@@ -1,0 +1,16 @@
+{
+  "name": "Grafos1_Jumpo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:projeto-de-algoritmos/Grafos1_Jumpo.git",
+  "author": "sofiapatrocinio <sofiapatrocinio@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "sucrase": "^3.20.3"
+  },
+  "scripts": {
+    "dev": "nodemon --exec sucrase-node src/index.js"
+  }
+}
