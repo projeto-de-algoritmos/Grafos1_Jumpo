@@ -3,7 +3,6 @@ const randomIntFromInterval = (min, max) => { // min and max included
 }
 
 const alreadyExists = (links, node1, node2) => {
-    console.log("nodesss *********************************")
     console.log(node1, node2)
 
     const found = links.find((link) => {
@@ -13,9 +12,6 @@ const alreadyExists = (links, node1, node2) => {
             return true;
         return false
     });
-
-    console.log('FOUNDDDD ------------------------------')
-    console.log(found)
 
     return found ? true : false
 }
@@ -40,12 +36,9 @@ const generateLinks  = (qtdLinks, qtdNodes) => {
     
         if (node1 === node2) node2 = randomIntFromInterval(min, qtdNodes);
 
-        console.log('ALREADY EXISTS')
-
         if(!alreadyExists(links, node1, node2) || links.length == 0) links.push({target:node1, source:node2})
     }
 
-    console.log(links)
     return links
 }
 
