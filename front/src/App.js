@@ -1,25 +1,20 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import '../node_modules/react-vis/dist/style.css';
+import { ForceGraph, ForceGraphNode, ForceGraphLink } from 'react-vis-force';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <ForceGraph simulationOptions={{ height: 300, width: 300 }}>
+        <ForceGraphNode node={{ id: 'first-node' }} fill="red" />
+        <ForceGraphNode node={{ id: 'second-node' }} fill="blue" />
+        <ForceGraphNode node={{ id: 'third-node' }} fill="green" />
+        <ForceGraphLink link={{ source: 'first-node', target: 'second-node' }} />
+        <ForceGraphLink link={{ source: 'first-node', target: 'third-node' }} />
+      </ForceGraph>
+    );
+  }
 }
 
 export default App;
