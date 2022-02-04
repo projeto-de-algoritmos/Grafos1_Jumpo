@@ -1,31 +1,41 @@
 class Graph {
-    constructor(noOfVertices) {
-      this.noOfVertices = noOfVertices;
-      this.AdjList = new Map();
+    constructor(node) {
+        this.node = node;
+        this.listAdj = new Map();
     }
-  
-      addVertex(v) {
-          this.AdjList.set(v, []); 
-      }
-  
-      addEdge(v, w) {
-          this.AdjList.get(v).push(w);
-          this.AdjList.get(w).push(v);
-      }
-  
-      printGraph() {
-          var get_keys = this.AdjList.keys();
-  
-          for (var i of get_keys) {
-              var get_values = this.AdjList.get(i);
-              var conc = "";
-          
-              for (var j of get_values) conc += j + " ";
-              console.log(i + " -> " + conc);
-          }
-      }
-  
-  }
-  
-  
-  export default new Graph(1000);
+
+    getGraph(){
+        return this.Graph;
+    }
+    addNode(v) {
+        this.listAdj.set(v, []);
+    }
+
+    addLink(vertex, node) {
+        this.listAdj.get(vertex).push(node);
+        this.listAdj.get(node).push(vertex);
+    }
+
+    BFS(firstNode) {
+        const nodesQueue = [];
+        const visited = new Map();
+
+        visited[firstNode] = true;
+        nodesQueue.push(firstNode);
+
+        while (!nodesQueue.isEmpty()) {
+            const vertex = nodesQueue.shift();
+            const nodesVertex = this.listAdj.get(vertex);
+
+            for (let node in nodesVertex) {
+                if (!visited[nodesVertex[node]]) {
+                    visited[nodesVertex[node]] = true;
+                    nodesQueue.push(nodesVertex[node]);
+                }
+            }
+        }
+    }
+}
+
+
+export default new Graph(1000)

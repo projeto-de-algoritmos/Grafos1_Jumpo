@@ -18,8 +18,8 @@ const alreadyExists = (links, node1, node2) => {
 }
 
 const generateNodes = () => {
-    for (let i = 0; i <= 1000; i++) {
-        Graph.addVertex(i);
+    for (let i = 0; i <= 10; i++) {
+        Graph.addNode(i);
     }
 }
 
@@ -28,17 +28,17 @@ const generateLinks = (qtdLinks) => {
     const links = []
     let qtd = qtdLinks
 
-    generateNodes(1000);
+    generateNodes();
 
     while (qtd--) {
-        const node1 = randomIntFromInterval(min, 1000);
-        let node2 = randomIntFromInterval(min, 1000);
+        const node1 = randomIntFromInterval(min, 10);
+        let node2 = randomIntFromInterval(min, 10);
 
-        if (node1 === node2) node2 = randomIntFromInterval(min, 1000);
+        if (node1 === node2) node2 = randomIntFromInterval(min, 10);
 
         if (!alreadyExists(links, node1, node2) || links.length === 0) {
             links.push({ target: node1, source: node2 })
-            Graph.addEdge(node1, node2)
+            Graph.addLink(node1, node2)
         }
     }
 
