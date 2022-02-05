@@ -2,7 +2,7 @@ class Graph {
     constructor(node) {
         this.node = node;
         this.listAdj = new Map();
-        this.links = 0
+        this.links = 0;
     }
 
     getGraph() {
@@ -59,18 +59,18 @@ class Graph {
 
 
         const shortestPath = () => {
-            const pathStack = [lastNode]
+            const pathStack = [lastNode];
 
             let node = previous[lastNode];
 
             while (node != firstNode) {
                 pathStack.push(node);
-                node = previous[node]
+                node = previous[node];
             }
             pathStack.push(firstNode);
 
             // return shortest path
-            return pathStack.reverse().join(' > ')
+            return pathStack.reverse().join(' > ');
 
         }
 
@@ -92,10 +92,10 @@ class Graph {
                         nodesQueue.push(vNode);
 
                         // add link
-                        links[vNode] = links[vertex] + 1
+                        links[vNode] = links[vertex] + 1;
 
                         // set previous path
-                        previous[vNode] = vertex
+                        previous[vNode] = vertex;
                     }
                 }
             }
@@ -109,7 +109,24 @@ class Graph {
 
         return false;
     }
+
+    DFS(node) {
+        const visited = new Map();
+        this.searchDFS(node, visited);
+        return visited;
+    }
+
+    searchDFS(node, visited) {
+        visited[node] = true;
+
+        const nearby = this.listAdj.get(node);
+
+        for (let i in nearby) {
+            if (!visited[nearby[i]])
+                this.searchDFS(nearby[i], visited);
+        }
+    }
 }
 
 
-export default new Graph(1000)
+export default new Graph(1000);

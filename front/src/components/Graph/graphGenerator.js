@@ -1,7 +1,7 @@
 import Graph from './Graph';
 
 const randomIntFromInterval = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 const alreadyExists = (links, node1, node2) => {
@@ -11,10 +11,10 @@ const alreadyExists = (links, node1, node2) => {
             return true;
         else if (link.target === node2 && link.source === node1)
             return true;
-        return false
+        return false;
     });
 
-    return found ? true : false
+    return found ? true : false;
 }
 
 const generateNodes = () => {
@@ -24,9 +24,9 @@ const generateNodes = () => {
 }
 
 const generateLinks = (qtdLinks) => {
-    const min = 0
-    const links = []
-    let qtd = qtdLinks
+    const min = 0;
+    const links = [];
+    let qtd = qtdLinks;
 
     generateNodes();
 
@@ -37,8 +37,8 @@ const generateLinks = (qtdLinks) => {
         if (node1 === node2) node2 = randomIntFromInterval(min, 10);
 
         if (!alreadyExists(links, node1, node2) || links.length === 0) {
-            links.push({ target: node1, source: node2 })
-            Graph.addLink(node1, node2)
+            links.push({ target: node1, source: node2 });
+            Graph.addLink(node1, node2);
         }
     }
 
