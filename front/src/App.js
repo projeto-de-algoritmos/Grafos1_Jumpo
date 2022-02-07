@@ -4,7 +4,7 @@ import '../node_modules/react-vis/dist/style.css';
 import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink } from 'react-vis-force';
 import Graph from './components/Graph/graphGenerator'
 
-const object = Graph.generateLinks(5);
+const object = Graph.generateLinks(200);
 const nodes = Graph.generateNodes();
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
         {this.state.showGraph ?
           <div className="action">
             <InteractiveForceGraph
-              simulationOptions={{ height: 300, width: 300 }}
+              simulationOptions={{ height: 500, width: 500 }}
             >
               {nodes.map(node => (
                 <ForceGraphNode

@@ -19,7 +19,7 @@ const alreadyExists = (links, node1, node2) => {
 
 const generateNodes = () => {
     const nodes = [];
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 100; i++) {
         Graph.addNode(i);
         nodes.push({ id: i});
     }
@@ -34,10 +34,10 @@ const generateLinks = (qtdLinks) => {
     generateNodes();
 
     while (qtd--) {
-        const node1 = randomIntFromInterval(min, 10);
-        let node2 = randomIntFromInterval(min, 10);
+        const node1 = randomIntFromInterval(min, 100);
+        let node2 = randomIntFromInterval(min, 100);
 
-        if (node1 === node2) node2 = randomIntFromInterval(min, 10);
+        if (node1 === node2) node2 = randomIntFromInterval(min, 100);
 
         if (!alreadyExists(links, node1, node2) || links.length === 0) {
             links.push({ target: node1, source: node2 });
