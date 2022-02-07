@@ -8,6 +8,7 @@ class Graph {
     getGraph() {
         return this.Graph;
     }
+
     addNode(v) {
         this.listAdj.set(v, []);
     }

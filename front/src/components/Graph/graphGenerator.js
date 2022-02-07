@@ -18,9 +18,12 @@ const alreadyExists = (links, node1, node2) => {
 }
 
 const generateNodes = () => {
+    const nodes = [];
     for (let i = 0; i <= 10; i++) {
         Graph.addNode(i);
+        nodes.push({ id: i});
     }
+    return nodes;
 }
 
 const generateLinks = (qtdLinks) => {
