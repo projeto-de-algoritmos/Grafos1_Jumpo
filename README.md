@@ -22,6 +22,11 @@ Adicione 3 ou mais screenshots do projeto em funcionamento.
 **Framework**: ReactJS<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
+Pré-requisitos:
+* NodeJS
+* ReactJS
+* Yarn
+
 ## Uso 
 É necessário instalar suas dependências usando o comando
 ```
