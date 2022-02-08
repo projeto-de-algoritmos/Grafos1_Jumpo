@@ -9,19 +9,22 @@ import GraphModel from './components/Graph/Graph'
 class App extends Component {
   constructor(props) {
     super(props);
-    
+
     const currentGraph = new GraphModel(100);
     const nodes = this.generateNodes(currentGraph);
     const object = this.generateLinks(currentGraph, 200);
 
     this.state = {
       currentGraph: currentGraph,
-      shortestPath: false,
+      viewShortestPath: false,
       showGraph: false,
       object: object,
       nodes: nodes,
       firstNode: 0,
-      lastNode: 0
+      lastNode: 0,
+      shortestPath: "",
+      viewDFS: false,
+      DFS: ""
     };
   }
 
@@ -49,7 +52,7 @@ class App extends Component {
       if (node1 === node2) node2 = graphGenerator.randomIntFromInterval(min, 100);
 
       if (links.length === 0 || !graphGenerator.alreadyExists(links, node1, node2)) {
-        links.push( { target: node1, source: node2 } );
+        links.push({ target: node1, source: node2 });
         graph.addLink(node1, node2);
       }
     }
@@ -59,7 +62,12 @@ class App extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.state.currentGraph.shortestPathBFS(this.state.firstNode, this.state.lastNode);
+    this.setState({ shortestPath: this.state.currentGraph.shortestPathBFS(this.state.firstNode, this.state.lastNode) });
+  };
+
+  onSubmitDFS = (e) => {
+    e.preventDefault();
+    this.setState({ DFS: this.state.currentGraph.DFS(Number(this.state.firstNode)) });
   };
 
   render() {
@@ -106,14 +114,14 @@ class App extends Component {
               {/* <button className="graph-button mrg-right-10" type="button" onClick={this.generateNewGraph}>
                 Gerar Novo Grafo
               </button> */}
-              <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ shortestPath: true })}>
+              <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ viewShortestPath: true })}>
                 Achar Menor Caminho
               </button>
-              <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ showGraph: true })}>
+              <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ viewBFS: true })}>
                 Busca por Profundidade
               </button>
             </div>
-            {this.state.shortestPath ?
+            {this.state.viewShortestPath ?
               <div>
                 <form onSubmit={this.onSubmit}>
                   <div className="node">
@@ -129,6 +137,29 @@ class App extends Component {
                       Buscar
                     </button>
                   </div>
+                  {this.state.shortestPath != "" ? <div className="action mrg-top-20">
+                    <span className="shortest-path">Menor Caminho: {this.state.shortestPath}</span>
+                  </div> : null}
+                </form>
+              </div>
+              : null
+            }
+            {this.state.viewBFS ?
+              <div>
+                <form onSubmit={this.onSubmitDFS}>
+                  <div className="node">
+                    <label htmlFor="firstNode">Nó Inicial</label>
+                    <input type="number" className="node-input" onChange={(e) => this.setState({ firstNode: e.target.value })}>
+                    </input>
+                  </div>
+                  <div className="action">
+                    <button className="graph-button mrg-top-20" type="submit">
+                      Buscar
+                    </button>
+                  </div>
+                  {this.state.DFS != "" ? <div className="action mrg-top-20">
+                    <span className="shortest-path">Busca DFS: {this.state.DFS}</span>
+                  </div> : null}
                 </form>
               </div>
               : null

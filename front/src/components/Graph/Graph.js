@@ -62,7 +62,7 @@ export default class GraphModel {
             pathStack.push(Number(firstNode));
 
             // return shortest path
-            return pathStack.reverse();
+            return pathStack.reverse().join(" > ");
 
         }
 
@@ -92,10 +92,7 @@ export default class GraphModel {
                 }
             }
             else {
-                return {
-                    distance: links[lastNode],
-                    path: shortestPath()
-                };
+                return shortestPath()
             }
         }
 
@@ -103,19 +100,21 @@ export default class GraphModel {
     }
 
     DFS(node) {
+        const nodes = [];
         const visited = new Map();
-        this.searchDFS(node, visited);
-        return visited;
+        return this.searchDFS(node, visited, nodes);
     }
 
-    searchDFS(node, visited) {
+    searchDFS(node, visited, nodes) {
         visited[node] = true;
 
         const nearby = this.listAdj.get(node);
+        nodes.push(node);
 
         for (let i in nearby) {
             if (!visited[nearby[i]])
-                this.searchDFS(nearby[i], visited);
+                this.searchDFS(nearby[i], visited, nodes);
         }
+        return nodes.join(', ');
     }
 }

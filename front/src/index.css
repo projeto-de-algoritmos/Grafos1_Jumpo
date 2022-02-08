@@ -81,6 +81,11 @@ body {
   margin-right: 10px;
 }
 
+.shortest-path {
+  color: #274472;
+  font-size: 25px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
