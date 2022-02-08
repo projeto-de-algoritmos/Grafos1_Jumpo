@@ -1,4 +1,4 @@
-# Jumpo
+# Graph Display
 
 **Número da Lista**: 3<br>
 **Conteúdo da Disciplina**: Grafos 1<br>
@@ -10,21 +10,27 @@
 | 17/0114333  |  Sofia Patrocínio |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+O projeto tem como objetivo a implementação dos algoritmos de busca por largura, encontrando o menor caminho entre um nó e outro de um grafo, e a busca por profundidade, gerando o caminho por profundidade de um nó específico. 
+
+É possível ver um grafo gerado e fazer as respectivas buscas.
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
+**Linguagem**: Javascript<br>
+**Framework**: ReactJS<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+É necessário instalar suas dependências usando o comando
+```
+yarn install
+```
 
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+Para rodar o projeto
+```
+yarn start
+```
 
-
-
+O projeto estará rodando na porta ```localhost:3000```
