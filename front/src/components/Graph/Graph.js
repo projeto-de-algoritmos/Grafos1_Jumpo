@@ -1,16 +1,8 @@
-class Graph {
+export default class GraphModel {
     constructor(node) {
         this.node = node;
         this.listAdj = new Map();
         this.links = 0;
-    }
-
-    getGraph() {
-        return this.Graph;
-    }
-
-    addNode(v) {
-        this.listAdj.set(v, []);
     }
 
     addLink(vertex, node) {
@@ -28,7 +20,6 @@ class Graph {
 
         while (nodesQueue.length) {
             const vertex = nodesQueue.shift();
-            console.log("VERTEX -> ", vertex);
 
             if (vertex == lastNode) return true;
 
@@ -60,7 +51,7 @@ class Graph {
 
 
         const shortestPath = () => {
-            const pathStack = [lastNode];
+            const pathStack = [Number(lastNode)];
 
             let node = previous[lastNode];
 
@@ -68,10 +59,10 @@ class Graph {
                 pathStack.push(node);
                 node = previous[node];
             }
-            pathStack.push(firstNode);
+            pathStack.push(Number(firstNode));
 
             // return shortest path
-            return pathStack.reverse().join(' > ');
+            return pathStack.reverse();
 
         }
 
@@ -128,6 +119,3 @@ class Graph {
         }
     }
 }
-
-
-export default new Graph(1000);

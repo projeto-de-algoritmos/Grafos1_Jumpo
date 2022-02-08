@@ -3,29 +3,63 @@ import './App.css';
 import '../node_modules/react-vis/dist/style.css';
 import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink } from 'react-vis-force';
 import graphGenerator from './components/Graph/graphGenerator'
-import Graph from './components/Graph/Graph'
+import GraphModel from './components/Graph/Graph'
+
 
 class App extends Component {
   constructor(props) {
     super(props);
+    
+    const currentGraph = new GraphModel(100);
+    const nodes = this.generateNodes(currentGraph);
+    const object = this.generateLinks(currentGraph, 200);
+
     this.state = {
+      currentGraph: currentGraph,
       shortestPath: false,
       showGraph: false,
-      object: graphGenerator.generateLinks(200),
-      nodes: graphGenerator.generateNodes(),
+      object: object,
+      nodes: nodes,
       firstNode: 0,
       lastNode: 0
     };
   }
 
-  generateNewGraph = () => {
-    this.setState(() => ({ object: graphGenerator.generateLinks(200) }));
-    this.setState(() => ({ nodes: graphGenerator.generateNodes() }));
+  generateNodes = (graph) => {
+    const nodes = [];
+    for (let i = 0; i <= 100; i++) {
+      graph.listAdj.set(i, []);
+      nodes.push({ id: i });
+    }
+
+    return nodes;
+  }
+
+
+  generateLinks = (graph, qtdLinks) => {
+    const min = 0;
+    const links = [];
+    let qtd = qtdLinks;
+
+
+    while (qtd--) {
+      const node1 = graphGenerator.randomIntFromInterval(min, 100);
+      let node2 = graphGenerator.randomIntFromInterval(min, 100);
+
+      if (node1 === node2) node2 = graphGenerator.randomIntFromInterval(min, 100);
+
+      if (links.length === 0 || !graphGenerator.alreadyExists(links, node1, node2)) {
+        links.push( { target: node1, source: node2 } );
+        graph.addLink(node1, node2);
+      }
+    }
+
+    return links
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    Graph.shortestPathBFS(this.state.firstNode, this.state.lastNode);
+    this.state.currentGraph.shortestPathBFS(this.state.firstNode, this.state.lastNode);
   };
 
   render() {
@@ -69,9 +103,9 @@ class App extends Component {
               </InteractiveForceGraph>
             </div>
             <div className="action">
-              <button className="graph-button mrg-right-10" type="button" onClick={this.generateNewGraph}>
+              {/* <button className="graph-button mrg-right-10" type="button" onClick={this.generateNewGraph}>
                 Gerar Novo Grafo
-              </button>
+              </button> */}
               <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ shortestPath: true })}>
                 Achar Menor Caminho
               </button>
@@ -84,10 +118,10 @@ class App extends Component {
                 <form onSubmit={this.onSubmit}>
                   <div className="node">
                     <label htmlFor="firstNode">Nó Inicial</label>
-                    <input type="number" className="node-input" onChange={(e) => this.setState({firstNode: e.target.value})}>
+                    <input type="number" className="node-input" onChange={(e) => this.setState({ firstNode: e.target.value })}>
                     </input>
                     <label htmlFor="lastNode">Nó Final</label>
-                    <input type="number" className="node-input" onChange={(e) => this.setState({lastNode: e.target.value})}>
+                    <input type="number" className="node-input" onChange={(e) => this.setState({ lastNode: e.target.value })}>
                     </input>
                   </div>
                   <div className="action">

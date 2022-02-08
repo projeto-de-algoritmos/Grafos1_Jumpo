@@ -1,10 +1,10 @@
 import Graph from './Graph';
 
-const randomIntFromInterval = (min, max) => {
+export const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const alreadyExists = (links, node1, node2) => {
+export const alreadyExists = (links, node1, node2) => {
 
     const found = links.find((link) => {
         if (link.target === node1 && link.source === node2)
@@ -17,38 +17,40 @@ const alreadyExists = (links, node1, node2) => {
     return found ? true : false;
 }
 
-const generateNodes = () => {
-    const nodes = [];
-    for (let i = 0; i <= 100; i++) {
-        Graph.addNode(i);
-        nodes.push({ id: i});
-    }
-    return nodes;
-}
+// const generateNodes = () => {
+//     const nodes = [];
+//     for (let i = 0; i <= 100; i++) {
+//         Graph.addNode(i);
+//         nodes.push({ id: i});
+//     }
+//     return nodes;
+// }
 
-const generateLinks = (qtdLinks) => {
-    const min = 0;
-    const links = [];
-    let qtd = qtdLinks;
+// const generateLinks = (qtdLinks) => {
+//     const min = 0;
+//     const links = [];
+//     let qtd = qtdLinks;
 
-    generateNodes();
+//     generateNodes();
 
-    while (qtd--) {
-        const node1 = randomIntFromInterval(min, 100);
-        let node2 = randomIntFromInterval(min, 100);
+//     while (qtd--) {
+//         const node1 = randomIntFromInterval(min, 100);
+//         let node2 = randomIntFromInterval(min, 100);
 
-        if (node1 === node2) node2 = randomIntFromInterval(min, 100);
+//         if (node1 === node2) node2 = randomIntFromInterval(min, 100);
 
-        if (!alreadyExists(links, node1, node2) || links.length === 0) {
-            links.push({ target: node1, source: node2 });
-            Graph.addLink(node1, node2);
-        }
-    }
+//         if (!alreadyExists(links, node1, node2) || links.length === 0) {
+//             links.push({ target: node1, source: node2 });
+//             Graph.addLink(node1, node2);
+//         }
+//     }
 
-    return links
-}
+//     return links
+// }
 
 export default {
-    generateNodes,
-    generateLinks,
+    // generateNodes,
+    // generateLinks,
+    randomIntFromInterval,
+    alreadyExists
 }
