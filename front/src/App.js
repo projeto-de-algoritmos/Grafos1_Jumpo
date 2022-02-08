@@ -2,20 +2,32 @@ import React, { Component } from 'react';
 import './App.css';
 import '../node_modules/react-vis/dist/style.css';
 import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink } from 'react-vis-force';
-import Graph from './components/Graph/graphGenerator'
+import graphGenerator from './components/Graph/graphGenerator'
+import Graph from './components/Graph/Graph'
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shortestPath: false,
       showGraph: false,
-      object: Graph.generateLinks(200),
-      nodes: Graph.generateNodes()
+      object: graphGenerator.generateLinks(200),
+      nodes: graphGenerator.generateNodes(),
+      firstNode: 0,
+      lastNode: 0
     };
   }
+
   generateNewGraph = () => {
-    this.setState(() => ({ object: Graph.generateLinks(200)}));
-    this.setState(() => ({ nodes: Graph.generateNodes()}));
+    this.setState(() => ({ object: graphGenerator.generateLinks(200) }));
+    this.setState(() => ({ nodes: graphGenerator.generateNodes() }));
   }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    Graph.shortestPathBFS(this.state.firstNode, this.state.lastNode);
+  };
+
   render() {
     return (
       <>
@@ -60,13 +72,33 @@ class App extends Component {
               <button className="graph-button mrg-right-10" type="button" onClick={this.generateNewGraph}>
                 Gerar Novo Grafo
               </button>
-              <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ showGraph: true })}>
+              <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ shortestPath: true })}>
                 Achar Menor Caminho
               </button>
               <button className="graph-button mrg-right-10" type="button" onClick={() => this.setState({ showGraph: true })}>
                 Busca por Profundidade
               </button>
             </div>
+            {this.state.shortestPath ?
+              <div>
+                <form onSubmit={this.onSubmit}>
+                  <div className="node">
+                    <label htmlFor="firstNode">Nó Inicial</label>
+                    <input type="number" className="node-input" onChange={(e) => this.setState({firstNode: e.target.value})}>
+                    </input>
+                    <label htmlFor="lastNode">Nó Final</label>
+                    <input type="number" className="node-input" onChange={(e) => this.setState({lastNode: e.target.value})}>
+                    </input>
+                  </div>
+                  <div className="action">
+                    <button className="graph-button mrg-top-20" type="submit">
+                      Buscar
+                    </button>
+                  </div>
+                </form>
+              </div>
+              : null
+            }
           </div> : null
         }
       </>

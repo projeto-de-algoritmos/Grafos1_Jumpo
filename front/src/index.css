@@ -46,11 +46,39 @@ body {
   padding: 15px 25px 15px 25px;
 }
 
+.node {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.node label {
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.node input {
+  height: 30px;
+  border: solid 1.5px black;
+  border-radius: 10px !important;
+  width: 50px;
+  margin-left: 10px;
+}
+
 .action {
   display: flex;
   justify-content: center;
   text-align: center;
   font-weight: 500;
+}
+
+.mrg-top-20 {
+  margin-top: 20px;
+}
+
+.mrg-right-10 {
+  margin-right: 10px;
 }
 
 code {
