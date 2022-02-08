@@ -33,10 +33,12 @@ Pré-requisitos:
 * Yarn
 
 ## Uso 
-É necessário instalar suas dependências usando o comando
+É necessário entrar na pasta do front ```cd front/``` e instalar suas dependências usando o comando
+
 ```
 yarn install
 ```
+Ainda denro da pasta /front:
 
 Para rodar o projeto
 ```
