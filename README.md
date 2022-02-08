@@ -15,7 +15,12 @@ O projeto tem como objetivo a implementação dos algoritmos de busca por largur
 É possível ver um grafo gerado e fazer as respectivas buscas.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![Peek 2022-02-07 23-57](h![Screenshot from 2022-02-07 23-55-40](https://user-images.githubusercontent.com/38709421/152909734-7267ee2d-dafa-405e-ac6b-09ea50096716.png)
+![Screenshot from 2022-02-07 23-55-43](https://user-images.githubusercontent.com/38709421/152909736-c7605f2a-10f5-48a5-94a6-45f1d73f8943.png)
+![Screenshot from 2022-02-07 23-55-54](https://user-images.githubusercontent.com/38709421/152909737-49bc1eeb-5cf7-4c76-9e32-c5fc9c4f8b50.png)
+![Screenshot from 2022-02-07 23-58-13](https://user-images.githubusercontent.com/38709421/152909740-db94bcfd-4060-4b1f-a456-bef16ca22d4b.png)
+ttps://user-images.githubusercontent.com/38709421/152909708-e2fcaad8-c0ac-4e8a-a9db-220393884e56.gif)
+
 
 ## Instalação 
 **Linguagem**: Javascript<br>
