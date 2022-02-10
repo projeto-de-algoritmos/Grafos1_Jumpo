@@ -50,3 +50,5 @@ O projeto estará rodando na porta ```localhost:3000```
 ## Vídeo
 
 [![Watch the video](https://user-images.githubusercontent.com/38709421/152912382-cf095469-dda5-4943-8154-212f69677f22.png)](https://www.youtube.com/watch?v=ZkINwMq7BM0)
+
+* [Link para vídeo](https://drive.google.com/file/d/16gjKPaWij2ZSkcJvPRkAhPIGY9ZeUUJQ/view?usp=sharing)
